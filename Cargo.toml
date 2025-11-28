@@ -1,0 +1,21 @@
+[package]
+name = "rrect_physics"
+version = "0.1.0"
+edition = "2024"
+authors = ["Team Injured Elbow"]
+description = "An axis-aligned rounded rectangle physics implementation for the Bevy game engine"
+
+[dependencies]
+bevy_app = "0.17"
+bevy_ecs = "0.17"
+bevy_math = { version = "0.17", features = ["bevy_reflect", "serialize"] }
+bevy_platform = "0.17"
+bevy_reflect = "0.17"
+bevy_time = "0.17"
+serde = { version = "1.0", optional = true }
+
+[features]
+default = ["serialize", "singleplayer"]
+serialize = ["serde"]
+singleplayer = []
+multiplayer = []
