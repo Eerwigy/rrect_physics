@@ -10,12 +10,15 @@ bevy_app = "0.17"
 bevy_ecs = "0.17"
 bevy_math = { version = "0.17", features = ["bevy_reflect", "serialize"] }
 bevy_platform = "0.17"
-bevy_reflect = "0.17"
+bevy_reflect = { version = "0.17", optional = true }
 bevy_time = "0.17"
 serde = { version = "1.0", optional = true }
 
 [features]
-default = ["serialize", "singleplayer"]
+default = ["serialize", "singleplayer", "reflect"]
 serialize = ["serde"]
+reflect = ["bevy_reflect"]
 singleplayer = []
-multiplayer = []
+multiplayer = ["client", "server"]
+client = ["serialize"]
+server = ["serialize"]

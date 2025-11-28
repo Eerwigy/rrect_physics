@@ -1,22 +1,28 @@
-use bevy_app::prelude::*;
 use bevy_ecs::prelude::*;
 use bevy_math::prelude::*;
 use bevy_platform::collections::HashMap;
+
+#[cfg(feature = "reflect")]
 use bevy_reflect::prelude::*;
+#[cfg(feature = "serialize")]
 use serde::{Deserialize, Serialize};
 
 /// Component for storing position for physics.
 ///
 /// Multiply by `TILE_SIZE` to obtain position for rendering.
-#[derive(Component, Default, Reflect, Clone, Copy, Serialize, Deserialize, Debug)]
+#[derive(Component, Default, Clone, Copy, Debug)]
+#[cfg_attr(feature = "reflect", derive(Reflect))]
+#[cfg_attr(feature = "serialize", derive(Deserialize, Serialize))]
 #[require(Movement)]
-#[reflect(Component)]
+#[cfg_attr(feature = "reflect", reflect(Component))]
 pub struct Position(pub Vec2);
 
 /// Do not modify velocity directly
 /// Instead use apply_force to change velocity
-#[derive(Component, Default, Reflect, Clone, Serialize, Deserialize, Debug)]
-#[reflect(Component)]
+#[derive(Component, Default, Clone, Debug)]
+#[cfg_attr(feature = "reflect", derive(Reflect))]
+#[cfg_attr(feature = "serialize", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "reflect", reflect(Component))]
 pub struct Movement {
     /// Displacement of an object per frame.
     ///
@@ -65,8 +71,10 @@ impl Movement {
 }
 
 /// Collider represented by a rectangle with rounded corners
-#[derive(Component, Reflect, Clone, Copy, Serialize, Deserialize, Debug)]
-#[reflect(Component)]
+#[derive(Component, Clone, Copy, Debug)]
+#[cfg_attr(feature = "reflect", derive(Reflect))]
+#[cfg_attr(feature = "serialize", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "reflect", reflect(Component))]
 pub struct Collider {
     pub size: Vec2,
     pub radius: f32,
@@ -112,7 +120,9 @@ impl Default for Collider {
     }
 }
 
-#[derive(Default, Reflect, Clone, Copy, Serialize, Deserialize, Debug)]
+#[derive(Default, Clone, Copy, Debug)]
+#[cfg_attr(feature = "reflect", derive(Reflect))]
+#[cfg_attr(feature = "serialize", derive(Deserialize, Serialize))]
 pub enum ColliderType {
     /// Collider with no collision response (default)
     #[default]
@@ -124,14 +134,17 @@ pub enum ColliderType {
     Dynamic(f32),
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Clone)]
+#[cfg_attr(feature = "serialize", derive(Serialize, Deserialize))]
 pub struct PartialForce {
     pub id: String,
     pub force: Option<Vec2>,
     pub active: Option<bool>,
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug, Reflect)]
+#[derive(Clone, Debug)]
+#[cfg_attr(feature = "serialize", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "reflect", derive(Reflect))]
 pub struct Force {
     pub id: String,
     pub force: Vec2,
