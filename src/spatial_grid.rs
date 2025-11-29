@@ -39,10 +39,7 @@ impl SpatialHashGrid {
 
             self.ent_to_grid.insert(ent, cells.clone());
             for cell in cells {
-                self.grid_to_ent
-                    .entry(cell)
-                    .or_insert_with(HashSet::new)
-                    .insert(ent);
+                self.grid_to_ent.entry(cell).or_default().insert(ent);
             }
         }
     }

@@ -25,3 +25,7 @@ client = ["serialize", "render"]
 server = ["serialize", "physics"]
 render = ["bevy_transform"]
 physics = ["bevy_platform", "bevy_time"]
+
+[lints.clippy]
+too_many_arguments = "allow"
+type_complexity = "allow"

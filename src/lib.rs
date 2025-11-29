@@ -1,6 +1,7 @@
 //! An axis-aligned round rectangle implementation for the bevy game engine
 
 mod components;
+#[cfg(feature = "physics")]
 mod spatial_grid;
 
 pub use components::{Collider, ColliderType, Force, Movement, PartialForce, Position};
@@ -35,11 +36,8 @@ impl Default for RRectPhysicsPlugin {
 #[cfg(feature = "singleplayer")]
 impl Plugin for RRectPhysicsPlugin {
     fn build(&self, app: &mut App) {
-        app.register_type::<Position>();
-        app.register_type::<Movement>();
-        app.register_type::<Collider>();
-        app.register_type::<ColliderType>();
-        app.register_type::<Force>();
+        #[cfg(feature = "reflect")]
+        app.add_plugins(type_registry);
         app.init_resource::<TileSize>();
         app.insert_resource(SpatialHashGrid {
             cell_size: self.spatial_grid_size,
@@ -59,6 +57,15 @@ impl Plugin for RRectPhysicsPlugin {
         app.add_systems(Update, update_translation);
         app.add_systems(PostUpdate, translation_just_added);
     }
+}
+
+#[cfg(feature = "reflect")]
+fn type_registry(app: &mut App) {
+    app.register_type::<Position>();
+    app.register_type::<Movement>();
+    app.register_type::<Collider>();
+    app.register_type::<ColliderType>();
+    app.register_type::<Force>();
 }
 
 #[cfg(feature = "render")]
