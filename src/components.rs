@@ -47,16 +47,12 @@ impl Movement {
     }
 
     pub fn apply_force(&mut self, partial: PartialForce) {
-        let new_force;
         let id = partial.id.clone();
-        match self.forces.get(&id) {
-            Some(old_force) => {
-                new_force = old_force.mix(&partial);
-            }
-            None => {
-                new_force = partial.into();
-            }
-        }
+
+        let new_force = match self.forces.get(&id) {
+            Some(old_force) => old_force.mix(&partial),
+            None => partial.into(),
+        };
 
         self.forces.insert(id, new_force);
     }
