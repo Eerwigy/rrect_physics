@@ -20,7 +20,7 @@ cargo r --feature gizmos --example simple
 
 ### Stress test
 
-In this example, you can spawn an entity by left-clicking or 10 entities by right-clicking.
+In this example, you can spawn an entity by left-clicking or 10 entities by right-clicking. This is useful for testing performance.
 
 To run:
 ```bash
