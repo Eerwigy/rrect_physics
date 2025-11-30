@@ -71,14 +71,12 @@ fn should_bob_spawn(
 ) {
     if click.just_pressed(MouseButton::Left) {
         events.write(SpawnBob(cursor.position / TILE_SIZE));
-        return;
     }
 
     if click.just_pressed(MouseButton::Right) {
         for _ in 0..10 {
             events.write(SpawnBob(cursor.position / TILE_SIZE));
         }
-        return;
     }
 }
 
@@ -90,8 +88,8 @@ fn spawn_bob(mut commands: Commands, mut events: MessageReader<SpawnBob>) {
         movement.apply_force(PartialForce {
             id: "main".to_string(),
             force: Some(vec2(
-                rng.random_range((-7.0)..(7.0)), // Random velocity
-                rng.random_range((-7.0)..(7.0)),
+                rng.random_range(-7.0..7.0), // Random velocity
+                rng.random_range(-7.0..7.0),
             )),
             active: Some(false),
         });
