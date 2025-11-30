@@ -18,3 +18,15 @@ Or run with hitboxes shown:
 cargo r --feature gizmos --example simple
 ```
 
+### Stress test
+
+In this example, you can spawn an entity by left-clicking or 10 entities by right-clicking.
+
+To run:
+```bash
+cargo r --example stress_test
+```
+
+Or run with hitboxes shown:
+```bash
+cargo r --feature gizmos --example stress_test
