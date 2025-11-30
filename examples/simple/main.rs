@@ -48,7 +48,7 @@ fn setup(mut commands: Commands) {
         Name::new("Player"),
         Player,
         Position::default(),
-        Collider::new(Vec2::ONE, 0.0, ColliderType::Dynamic(1.0)),
+        Collider::new(Vec2::ONE, 0.2, ColliderType::Dynamic(1.0)),
         Sprite::from_color(Color::srgb(0.0, 0.0, 1.0), TILE_SIZE_VEC),
     ));
 
@@ -56,7 +56,7 @@ fn setup(mut commands: Commands) {
         Name::new("Heavy Box"),
         HeavyBox,
         Position(vec2(5.0, 0.0)),
-        Collider::new(Vec2::splat(2.0), 0.0, ColliderType::Dynamic(4.0)), // Larger mass, pushed slower
+        Collider::new(Vec2::splat(2.0), 0.4, ColliderType::Dynamic(4.0)), // Larger mass, pushed slower
         Sprite::from_color(Color::srgb(0.6, 0.4, 0.0), TILE_SIZE_VEC * 2.0),
     ));
 
@@ -64,7 +64,7 @@ fn setup(mut commands: Commands) {
         Name::new("Light Box"),
         LightBox,
         Position(vec2(-5.0, 0.0)),
-        Collider::new(Vec2::ONE, 0.0, ColliderType::Dynamic(0.5)), // Smaller mass, pushed faster
+        Collider::new(Vec2::ONE, 0.2, ColliderType::Dynamic(0.5)), // Smaller mass, pushed faster
         Sprite::from_color(Color::srgb(0.5, 0.4, 0.0), TILE_SIZE_VEC),
     ));
 
