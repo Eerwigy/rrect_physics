@@ -4,4 +4,17 @@ This is a simple physics implementation with axis-aligned rounded rectangles tha
 
 ## Examples
 
-Examples will be here soon ...
+### Simple
+
+This example has a player, two pushable boxes (one heavy and one not heavy) and an immovable wall.
+
+To run:
+```bash
+cargo r --example simple
+```
+
+Or run with hitboxes shown:
+```bash
+cargo r --feature gizmos --example simple
+```
+
