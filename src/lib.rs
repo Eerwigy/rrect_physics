@@ -43,6 +43,7 @@ impl Plugin for PvwRRectPhysicsPlugin {
             cell_size: self.spatial_grid_size,
             ..Default::default()
         });
+        app.add_message::<CollisionMessage>();
         app.configure_sets(FixedUpdate, PhysicsSystems);
         app.add_systems(
             FixedUpdate,
@@ -98,6 +99,7 @@ impl Plugin for PvwRRectPhysicsPluginServer {
             cell_size: self.spatial_grid_size,
             ..Default::default()
         });
+        app.add_message::<CollisionMessage>();
         app.configure_sets(FixedUpdate, PhysicsSystems);
         app.add_systems(
             FixedUpdate,
