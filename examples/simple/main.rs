@@ -1,7 +1,7 @@
 use bevy::prelude::*;
 use pvw_rrect_physics::*;
 
-const TILE_SIZE: f32 = 8.0;
+const TILE_SIZE: f32 = 40.0;
 const TILE_SIZE_VEC: Vec2 = Vec2::splat(TILE_SIZE);
 
 fn main() -> AppExit {
@@ -33,16 +33,7 @@ struct LightBox;
 struct Wall;
 
 fn setup(mut commands: Commands) {
-    commands.spawn((
-        Name::new("Camera"),
-        Camera2d,
-        Projection::Orthographic(OrthographicProjection {
-            scaling_mode: bevy::camera::ScalingMode::FixedVertical {
-                viewport_height: 150.0,
-            },
-            ..OrthographicProjection::default_2d()
-        }),
-    ));
+    commands.spawn((Name::new("Camera"), Camera2d));
 
     commands.spawn((
         Name::new("Player"),
