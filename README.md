@@ -2,6 +2,11 @@
 
 This is a simple physics implementation with axis-aligned rounded rectangles that I'm using for my game Pancakes vs Waffles. I do not recommend using this in your own projects because it is probably filled with bugs.
 
+## Current limitations
+
+- No tests or documentation
+- It becomes laggy when many entities are close together
+
 ## Examples
 
 ### Simple
@@ -30,3 +35,4 @@ cargo r --example stress_test
 Or run with hitboxes shown:
 ```bash
 cargo r --feature gizmos --example stress_test
+```
