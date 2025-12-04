@@ -183,14 +183,19 @@ fn update_velocity_and_predict(
     let dt = time.delta_secs();
 
     for (mut vel, mut pos) in &mut query {
-        vel.velocity = Vec2::ZERO;
-        vel.apply_damping(dt);
+        let mut total = Vec2::ZERO;
 
-        for force in vel.forces.clone().values() {
-            vel.velocity += force.force * dt;
+        let lerp_val = vel.damping * dt;
+        for (_, force) in &mut vel.forces {
+            if !force.active {
+                force.force.x = force.force.x.lerp(0.0, lerp_val.x);
+                force.force.y = force.force.y.lerp(0.0, lerp_val.y);
+            }
+
+            total += force.force;
         }
 
-        vel.velocity = vel.velocity.clamp_length_max(Movement::MAX_VELOCITY * dt);
+        vel.velocity = total.clamp_length_max(Movement::MAX_VELOCITY) * dt;
 
         pos.0 += vel.velocity;
     }

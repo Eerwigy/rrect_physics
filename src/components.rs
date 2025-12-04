@@ -56,14 +56,6 @@ impl Movement {
 
         self.forces.insert(id, new_force);
     }
-
-    pub fn apply_damping(&mut self, dt: f32) {
-        for (_, force) in &mut self.forces {
-            if !force.active {
-                force.force *= self.damping * dt;
-            }
-        }
-    }
 }
 
 /// Collider represented by a rectangle with rounded corners
