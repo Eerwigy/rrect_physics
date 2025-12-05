@@ -112,6 +112,10 @@ fn spawn_bob(mut commands: Commands, mut events: MessageReader<SpawnBob>) {
     }
 }
 
-fn bob_collide(mut events: MessageReader<CollisionMessage>) {
-    println!("{} collisions detected", events.read().len());
+fn bob_collide(mut events: MessageReader<CollisionMessage>, query: Query<(), With<Collider>>) {
+    println!(
+        "{} collisions detected, bob count: {}",
+        events.read().len(),
+        query.iter().len()
+    );
 }
