@@ -1,6 +1,6 @@
 # pvw_rrect_physics
 
-This is a simple physics implementation with axis-aligned rounded rectangles that I'm using for my game Pancakes vs Waffles. I do not recommend using this in your own projects because it is probably filled with bugs.
+This is a simple physics implementation with axis-aligned rounded rectangles that I *was* using for my game Pancakes vs Waffles. I do not recommend using this in your own projects because it is probably filled with bugs. Please use [avian physics](https://github.com/avianphysics/avian/) instead because it is much more feature rich and much more performant.
 
 ## Current limitations
 
